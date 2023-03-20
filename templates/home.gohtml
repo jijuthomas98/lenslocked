@@ -1,1 +1,13 @@
-<h1>!! Welcome to my site</h1>
+<h1>!! Welcome
+    {{if .Name}}
+    {{.Name}}
+    {{else}}
+    to my site
+    {{end}}!
+</h1>
+{{range .Widgets}}
+<div class="widget">
+    <h3 class="name">{{.Name}}</h3>
+    <span class="price">${{.Price}}</span>
+</div>
+{{end}}
