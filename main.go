@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"html/template"
 	"log"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/jijuthomas98/lenslocked/views"
 )
 
 type Widget struct {
@@ -20,8 +20,7 @@ type ViewData struct {
 }
 
 func executeTemplate(w http.ResponseWriter, filePath string) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	tml, err := template.ParseFiles(filePath)
+	tml, err := views.Parse(filePath)
 	if err != nil {
 		log.Printf("parsing template: %v", err)
 		http.Error(w, "There was error parsing template.", http.StatusInternalServerError)
@@ -29,15 +28,10 @@ func executeTemplate(w http.ResponseWriter, filePath string) {
 	}
 	data := ViewData{Name: "Jiju", Widgets: []Widget{
 		{"Blue Widget", 12},
-		{"Red Widget", 12},
+		{"Red Widget", 332},
 		{"Green Widget", 12},
 	}}
-	err = tml.Execute(w, data)
-	if err != nil {
-		log.Printf("executing template: %v", err)
-		http.Error(w, "There was error executing template.", http.StatusInternalServerError)
-		return
-	}
+	tml.Execute(w, data)
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
