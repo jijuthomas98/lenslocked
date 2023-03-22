@@ -1,13 +1,15 @@
-<h1>!! Welcome
-    {{if .Name}}
-    {{.Name}}
-    {{else}}
-    to my site
-    {{end}}!
-</h1>
-{{range .Widgets}}
-<div class="widget">
-    <h3 class="name">{{.Name}}</h3>
-    <span class="price">${{.Price}}</span>
-</div>
+<h1>!! Welcometo my site</h1>
+{{template "some_text"}}
+{{template "some_text"}}
+
+
+
+
+{{define "some_text"}}
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
+    type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+    Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of
+    Lorem Ipsum.</p>
 {{end}}
